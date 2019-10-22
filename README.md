@@ -3,3 +3,7 @@
 <hr>  
 
 
+## License
+
+[BSD 3-Clause](LICENSE) © Thierry Moudiki, 2019. 
+
