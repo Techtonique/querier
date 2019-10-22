@@ -1,0 +1,66 @@
+"""Filter data"""
+
+# Authors: Thierry Moudiki
+#
+# License: BSD 3
+
+
+import numpy as np
+from ..utils import parse_request
+
+
+# filtr(df, 'tip > 5')
+#req = "(time == 'Dinner') & (day == 'Sun') & (tip>1.5)"
+#filtr(df, req, limit=3, random=False)
+#filtr(df, req, limit=4, random=True)
+#
+#req = "(tip>1.5)"
+#filtr(df, req, limit=7, random=False)
+#filtr(df, req, limit=5, random=True)
+#
+#req = "(tip > 5) & (size > 3)"
+#filtr(df, req, limit=5, random=False)
+#filtr(df, req, limit=8, random=True)
+#
+#req = "(tip > 5) & (size > 3) & (sex == 'Male')"
+#filtr(df, req, limit=7, random=False)
+#filtr(df, req, limit=8, random=True)
+def filtr(df, req=None, limit=None, 
+           random=False, seed=123):
+
+    if req is None: # useless tho...
+        
+        return df
+    
+    # if request is not None:
+    n, p = df.shape
+    
+    str_conds = parse_request(req)
+    
+    df_res = df[eval(str_conds)]
+    
+    if limit is not None:
+        
+        assert int(limit) == limit,\
+        "limit must be an integer"                 
+        
+        if random == False:
+            
+            try:
+                return df_res.head(limit)            
+            except:                
+                raise ValueError('invalid request: check column names + contents (and parentheses for multiple conditions)')
+        
+        # if random == True:
+        try:
+            np.random.seed(seed)
+            return df_res.iloc[np.random.choice(range(0, df_res.shape[0]), 
+                                                 size=limit, replace=False),]
+        except:
+            raise ValueError('invalid request: check column names + contents (and parentheses for multiple conditions)')      
+    
+    # if limit is None:
+    try:
+        return df_res
+    except:
+        raise ValueError('invalid request: check column names + contents (and parentheses for multiple conditions)')      
