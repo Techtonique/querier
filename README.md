@@ -20,11 +20,11 @@ There are currently __9 types of operations__ available in the `querier`, with n
 - `delete`: __deletes rows__ from a Data Frame based on given criteria
 - `drop`: __drops columns__ from a Data Frame
 - `filtr`: __filters rows__ of the Data Frame based on given criteria
-- `join`: __joins 2 Data Frames__ based on a given criteria (available for _completeness_ of the interface, this operation is already straightforward in pandas)
+- `join`: __joins 2 Data Frames__ based on given criteria (available for _completeness_ of the interface, this operation is already straightforward in pandas)
 - `select`: __selects columns__ from the Data Frame
 - `summarize`: obtains __summaries of data__ based on grouping columns
 - `update`: __updates a column__, using an operation given by the user
-- `request`: for operations more complex than the previous 8, makes it possible to use a __SQL query on the Data Frame__
+- `request`: for operations more complex than the previous 8 ones, makes it possible to use a __SQL query on the Data Frame__
 
 The following notebooks present __examples of use__ of the `querier`: 
 
