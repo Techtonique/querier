@@ -20,22 +20,24 @@ from ..utils import parse_cols_request
 # request(df, "SELECT avg(tip) as avg_tip, AVG(size) as   avg_size, smoker FROM df WHERE tip > 20 GROUP BY size, tip")
 # request(df, "SELECT SUM(tip), smoker FROM df GROUP BY smoker having tip > 1.5")
 def request(df, req=None, **kwargs):
-    
-    if req is None: # useless tho...
-        
+
+    if req is None:  # useless tho...
+
         return df
-    
+
     # if req is not None:
-    try: 
-        
-        engine = create_engine('sqlite://', echo=False)
-        df.to_sql('df', con = engine, **kwargs)
-        req_res = engine.execute(req.upper()).fetchall()        
+    try:
+
+        engine = create_engine("sqlite://", echo=False)
+        df.to_sql("df", con=engine, **kwargs)
+        req_res = engine.execute(req.upper()).fetchall()
         col_names = parse_cols_request(req)
-        df_res = pd.DataFrame(req_res, columns = col_names)
-        
+        df_res = pd.DataFrame(req_res, columns=col_names)
+
         return df_res
-    
+
     except:
-        
-        raise ValueError('invalid request: check SQL syntax')
+
+        raise ValueError(
+            "invalid request: check SQL syntax"
+        )

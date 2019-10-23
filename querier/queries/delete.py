@@ -12,14 +12,14 @@ from ..utils import parse_request
 # delete(df, 'tip > 1.5')
 # delete(df, '(size == 2) | (size == 3)')
 def delete(df, req=None):
-    
-    if req is None: # useless tho...
-        
+
+    if req is None:  # useless tho...
+
         return df
-    
+
     # if request is not None:
     n, p = df.shape
-    
-    str_conds = parse_request(req)        
-    
+
+    str_conds = parse_request(req)
+
     return df[np.logical_not(eval(str_conds).values)]
