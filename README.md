@@ -35,6 +35,8 @@ The following notebooks present __examples of use__ of the `querier`:
 - [`request` example](/querier/demo/thierrymoudiki_231019_request.ipynb)
 - [`delete` example](/querier/demo/thierrymoudiki_241019_delete.ipynb)
 - [`drop` example](/querier/demo/thierrymoudiki_241019_drop.ipynb)
+- [`update` example](/querier/demo/thierrymoudiki_251019_update.ipynb)
+- [`concat` example](/querier/demo/thierrymoudiki_251019_concat.ipynb)
 
 
 ## Contributing
