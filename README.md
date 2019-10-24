@@ -28,15 +28,16 @@ There are currently __9 types of operations__ available in the `querier`, with n
 
 The following notebooks present __examples of use__ of the `querier`: 
 
-- [`select` example](/querier/demo/thierrymoudiki_231019_select.ipynb)
-- [`filtr` example](/querier/demo/thierrymoudiki_231019_filtr.ipynb)
-- [`summarize` example](/querier/demo/thierrymoudiki_231019_summarize.ipynb)
-- [`join` example](/querier/demo/thierrymoudiki_231019_join.ipynb)
-- [`request` example](/querier/demo/thierrymoudiki_231019_request.ipynb)
+- [`concat` example](/querier/demo/thierrymoudiki_251019_concat.ipynb)
 - [`delete` example](/querier/demo/thierrymoudiki_241019_delete.ipynb)
 - [`drop` example](/querier/demo/thierrymoudiki_241019_drop.ipynb)
+- [`filtr` example](/querier/demo/thierrymoudiki_231019_filtr.ipynb)
+- [`join` example](/querier/demo/thierrymoudiki_231019_join.ipynb)
+- [`select` example](/querier/demo/thierrymoudiki_231019_select.ipynb)
+- [`summarize` example](/querier/demo/thierrymoudiki_231019_summarize.ipynb)
 - [`update` example](/querier/demo/thierrymoudiki_251019_update.ipynb)
-- [`concat` example](/querier/demo/thierrymoudiki_251019_concat.ipynb)
+- [`request` example](/querier/demo/thierrymoudiki_231019_request.ipynb)
+
 
 
 ## Contributing
