@@ -7,6 +7,7 @@
 
 import numpy as np
 from ..utils import parse_request
+from ..utils import memoize
 
 
 # filtr(df, 'tip > 5')
@@ -25,6 +26,7 @@ from ..utils import parse_request
 # req = "(tip > 5) & (size > 3) & (sex == 'Male')"
 # filtr(df, req, limit=7, random=False)
 # filtr(df, req, limit=8, random=True)
+@memoize
 def filtr(df, req=None, limit=None, random=False, seed=123):
 
     if req is None:  # useless tho...

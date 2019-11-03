@@ -14,7 +14,7 @@ pip install git+https://github.com/thierrymoudiki/querier.git
 
 ## Package description
 
-There are currently __9 types of operations__ available in the `querier`, with no plan to extend that list much further (to maintain a relatively simple mental model). These verbs will look familiar to `dplyr` users, but the implementation (I used `numpy`, `pandas` and `SQLite3`) and signatures are different: 
+There are currently __9 types of operations__ available in the `querier`, with no plan to extend that list much further (to maintain a relatively simple mental model). These verbs will look familiar to `dplyr` users, but the implementation (I used `numpy`, `pandas` and `SQLite3`) and functions' signatures are different: 
 
 - `concat`: __concatenates 2 Data Frames__, either horizontally or vertically
 - `delete`: __deletes rows__ from a Data Frame based on given criteria

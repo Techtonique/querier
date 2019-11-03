@@ -6,13 +6,14 @@
 
 
 from ..utils import parse_update_request
-
+from ..utils import memoize
 
 # modifies input df (!)
 # update(df, 'tip = 2*tip')
 # update(df, "toto = 3*tip")
 # update(df, 'tip = np.mean(tip)')
 # update(df, 'toto = np.mean(tip)')
+@memoize
 def update(df, req=None):
 
     if req is None:  # useless tho...

@@ -5,7 +5,10 @@
 # License: BSD 3
 
 
+from ..utils import memoize
+
 # creates a copy
+@memoize
 def drop(df, req=None):
     try:
         return df.drop(
