@@ -17,7 +17,8 @@ from ..utils import memoize
 # select(df, req="day, time, sex", limit=10, random=True, seed=140)
 # select(df, req="day, time, sex")
 @memoize
-def select(df, req="*", limit=None, random=False, seed=123):
+def select(df, req="*", order_by=None, asc=True, 
+           limit=None, random=False, seed=123):
 
     n, p = df.shape
 
@@ -42,7 +43,11 @@ def select(df, req="*", limit=None, random=False, seed=123):
             ]
 
         # if limit is not None:
-        return df
+        if order_by is None:
+            
+            return df
+        
+        return df.sort_values(by=order_by, ascending=asc)
 
     # if col_names != "*":
     str_col_names = req.replace(" ", "")
@@ -56,25 +61,42 @@ def select(df, req="*", limit=None, random=False, seed=123):
         ), "limit must be an integer"
 
         if random == False:
+            
+            if order_by is None:
+            
+                try:
+                    return eval(
+                        "df[["
+                        + str_col_names
+                        + "]].head(limit)"
+                    )
+                except:
+                    raise ValueError(
+                        "request must contain df"
+                        "s column names (comma-separated)"
+                    )
 
+        # if random == True:
+        if order_by is None:
+        
             try:
                 return eval(
                     "df[["
                     + str_col_names
-                    + "]].head(limit)"
+                    + "]].iloc[np.random.randint(low=0, high=n, size=limit),:]"
                 )
             except:
                 raise ValueError(
                     "request must contain df"
                     "s column names (comma-separated)"
                 )
-
-        # if random == True:
+        
+        # if order_by is not None:
         try:
             return eval(
                 "df[["
                 + str_col_names
-                + "]].iloc[np.random.randint(low=0, high=n, size=limit),:]"
+                + "]].iloc[np.random.randint(low=0, high=n, size=limit),:].sort_values(by=order_by, ascending=asc)"
             )
         except:
             raise ValueError(
@@ -83,10 +105,21 @@ def select(df, req="*", limit=None, random=False, seed=123):
             )
 
     # if limit is None:
+    if order_by is None:
+        
+        try:
+            return eval("df[[" + str_col_names + "]]")
+        except:
+            raise ValueError(
+                "request must contain df"
+                "s column names (comma-separated)"
+            )
+            
+    # if order_by is not None:
     try:
-        return eval("df[[" + str_col_names + "]]")
+        return eval("df[[" + str_col_names + "]].sort_values(by=order_by, ascending=asc)")
     except:
         raise ValueError(
-            "request must contain df"
-            "s column names (comma-separated)"
-        )
+                "request must contain df"
+                "s column names (comma-separated)"
+            )
