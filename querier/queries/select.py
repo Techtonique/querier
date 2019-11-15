@@ -23,7 +23,7 @@ def select(df, req="*", order_by=None, asc=True,
     n, p = df.shape
     
     if order_by is not None:
-        order_by = order_by.replace(" ", "").split(',')
+        order_by_ = order_by.replace(" ", "").split(',')
 
     if req == "*":
 
@@ -50,7 +50,7 @@ def select(df, req="*", order_by=None, asc=True,
             
             return df
         
-        return df.sort_values(by=order_by, ascending=asc)
+        return df.sort_values(by=order_by_, ascending=asc)
 
     # if col_names != "*":
     str_col_names = req.replace(" ", "")
@@ -99,7 +99,7 @@ def select(df, req="*", order_by=None, asc=True,
             return eval(
                 "df[["
                 + str_col_names
-                + "]].iloc[np.random.randint(low=0, high=n, size=limit),:].sort_values(by=order_by, ascending=asc)"
+                + "]].iloc[np.random.randint(low=0, high=n, size=limit),:].sort_values(by=order_by_, ascending=asc)"
             )
         except:
             raise ValueError(
@@ -120,7 +120,7 @@ def select(df, req="*", order_by=None, asc=True,
             
     # if order_by is not None:
     try:
-        return eval("df[[" + str_col_names + "]].sort_values(by=order_by, ascending=asc)")
+        return eval("df[[" + str_col_names + "]].sort_values(by=order_by_, ascending=asc)")
     except:
         raise ValueError(
                 "request must contain df"
