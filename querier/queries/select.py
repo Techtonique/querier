@@ -21,6 +21,9 @@ def select(df, req="*", order_by=None, asc=True,
            limit=None, random=False, seed=123):
 
     n, p = df.shape
+    
+    if order_by is not None:
+        order_by = order_by.replace(" ", "").split(',')
 
     if req == "*":
 
