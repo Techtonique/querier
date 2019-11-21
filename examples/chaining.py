@@ -16,7 +16,7 @@ qrobj = qr.Querier(df)
 df1 = qrobj\
 .select(req="tip, sex, smoker, time")\
 .filtr(req="smoker == 'No'")\
-.summarize(req="avg(tip), sex, time", group_by="sex")\
+.summarize(req="sum(tip), sex, time", group_by="sex, time")\
 .df
 
 print(df1)
