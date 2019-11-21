@@ -7,7 +7,7 @@ from .queries import request
 from .queries import select
 from .queries import summarize
 from .queries import update
-
+from .wrapper import Querier
 
 __all__ = [
     concat,
@@ -19,4 +19,5 @@ __all__ = [
     select,
     summarize,
     update,
+    Querier
 ]
