@@ -35,7 +35,8 @@ setup(
     include_package_data=True,
     author='Thierry Moudiki',
     install_requires=["numpy >= 1.13.0", "pandas >= 0.25.1", 
-                      "scipy >= 0.19.0", "SQLAlchemy >= 1.3.9"].append(install_requires),
+                      "scipy >= 0.19.0", "SQLAlchemy >= 1.3.9", 
+                      "scikit-learn >= 0.18.0"].append(install_requires),
     dependency_links=dependency_links,
     author_email='thierry.moudiki@gmail.com'
 )
