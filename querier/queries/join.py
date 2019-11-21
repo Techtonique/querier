@@ -1,4 +1,4 @@
-"""Dropping columns"""
+"""Join data frames"""
 
 # Authors: Thierry Moudiki
 #
