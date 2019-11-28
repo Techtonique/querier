@@ -26,6 +26,11 @@ class Querier(BaseEstimator):
         "attribute 'df' must be a data frame"
         
         self.df = df
+        self.colnames = df.columns.values
+        self.rownames = df.index.values
+        self.nrows = df.shape[0]
+        self.ncols = df.shape[1]
+        self.dtypes = df.dtypes.values
     
     def select(self, req='*', order_by=None, asc=True, limit=None, 
                random=False, seed=123):
