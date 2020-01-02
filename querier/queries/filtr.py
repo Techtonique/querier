@@ -42,9 +42,7 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
 
     if limit is not None:
 
-        assert (
-            int(limit) == limit
-        ), "limit must be an integer"
+        assert int(limit) == limit, "limit must be an integer"
 
         if random == False:
 
@@ -60,9 +58,7 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
             np.random.seed(seed)
             return df_res.iloc[
                 np.random.choice(
-                    range(0, df_res.shape[0]),
-                    size=limit,
-                    replace=False,
+                    range(0, df_res.shape[0]), size=limit, replace=False
                 ),
             ]
         except:

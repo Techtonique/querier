@@ -18,28 +18,20 @@ from ..utils import memoize
 @memoize
 def concat(df1, df2, axis="h", **kwargs):
 
-    assert axis in (
-        "h",
-        "v",
-    ), "must have axis in ('h', 'v')"
+    assert axis in ("h", "v"), "must have axis in ('h', 'v')"
 
     if axis == "h":
 
         assert (
             len(
-                np.intersect1d(
-                    df1.columns.values,
-                    np.array(["key2", "value2"]),
-                )
+                np.intersect1d(df1.columns.values, np.array(["key2", "value2"]))
             )
             == 0
         ), "df1 and df2 must have different column names (try function join instead)"
 
         df = pd.DataFrame(np.hstack((df1, df2)))
 
-        df.columns = np.append(
-            df1.columns.values, df2.columns.values
-        )
+        df.columns = np.append(df1.columns.values, df2.columns.values)
 
         return df
 

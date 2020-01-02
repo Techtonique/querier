@@ -17,21 +17,20 @@ from ..utils import memoize
 # select(df, req="day, time, sex", limit=10, random=True, seed=140)
 # select(df, req="day, time, sex")
 @memoize
-def select(df, req="*", order_by=None, asc=True, 
-           limit=None, random=False, seed=123):
+def select(
+    df, req="*", order_by=None, asc=True, limit=None, random=False, seed=123
+):
 
     n, p = df.shape
-    
+
     if order_by is not None:
-        order_by_ = order_by.replace(" ", "").split(',')
+        order_by_ = order_by.replace(" ", "").split(",")
 
     if req == "*":
 
         if limit is not None:
 
-            assert (
-                int(limit) == limit
-            ), "limit must be an integer"
+            assert int(limit) == limit, "limit must be an integer"
 
             if random == False:
 
@@ -39,17 +38,13 @@ def select(df, req="*", order_by=None, asc=True,
 
             # if random == True:
             np.random.seed(seed)
-            return df.iloc[
-                np.random.randint(
-                    low=0, high=n, size=limit
-                ),
-            ]
+            return df.iloc[np.random.randint(low=0, high=n, size=limit),]
 
         # if limit is not None:
         if order_by is None:
-            
+
             return df
-        
+
         return df.sort_values(by=order_by_, ascending=asc)
 
     # if col_names != "*":
@@ -59,20 +54,14 @@ def select(df, req="*", order_by=None, asc=True,
 
     if limit is not None:
 
-        assert (
-            int(limit) == limit
-        ), "limit must be an integer"
+        assert int(limit) == limit, "limit must be an integer"
 
         if random == False:
-            
+
             if order_by is None:
-            
+
                 try:
-                    return eval(
-                        "df[["
-                        + str_col_names
-                        + "]].head(limit)"
-                    )
+                    return eval("df[[" + str_col_names + "]].head(limit)")
                 except:
                     raise ValueError(
                         "request must contain df"
@@ -81,7 +70,7 @@ def select(df, req="*", order_by=None, asc=True,
 
         # if random == True:
         if order_by is None:
-        
+
             try:
                 return eval(
                     "df[["
@@ -90,10 +79,9 @@ def select(df, req="*", order_by=None, asc=True,
                 )
             except:
                 raise ValueError(
-                    "request must contain df"
-                    "s column names (comma-separated)"
+                    "request must contain df" "s column names (comma-separated)"
                 )
-        
+
         # if order_by is not None:
         try:
             return eval(
@@ -103,26 +91,27 @@ def select(df, req="*", order_by=None, asc=True,
             )
         except:
             raise ValueError(
-                "request must contain df"
-                "s column names (comma-separated)"
+                "request must contain df" "s column names (comma-separated)"
             )
 
     # if limit is None:
     if order_by is None:
-        
+
         try:
             return eval("df[[" + str_col_names + "]]")
         except:
             raise ValueError(
-                "request must contain df"
-                "s column names (comma-separated)"
+                "request must contain df" "s column names (comma-separated)"
             )
-            
+
     # if order_by is not None:
     try:
-        return eval("df[[" + str_col_names + "]].sort_values(by=order_by_, ascending=asc)")
+        return eval(
+            "df[["
+            + str_col_names
+            + "]].sort_values(by=order_by_, ascending=asc)"
+        )
     except:
         raise ValueError(
-                "request must contain df"
-                "s column names (comma-separated)"
-            )
+            "request must contain df" "s column names (comma-separated)"
+        )

@@ -9,10 +9,7 @@ class Testrequest(ut.TestCase):
 
         df = pd.read_csv("tips.csv")
 
-        df1 = qr.request(
-            df,
-            "SELECT tip, smoker, day FROM df WHERE tip > 2",
-        )
+        df1 = qr.request(df, "SELECT tip, smoker, day FROM df WHERE tip > 2")
         df2 = qr.request(
             df,
             "SELECT tip, smoker, day, size FROM df WHERE (tip > 2) and (size > 4)",
@@ -37,11 +34,6 @@ class Testrequest(ut.TestCase):
         self.assertTrue(df3.shape[0] == 4)
         self.assertTrue(np.min(df3["size"].values) == 5)
         self.assertTrue(df4.shape[0] == 5)
-        self.assertTrue(
-            np.min(df4["avg_tip"].values)
-            == 3.180430107526883
-        )
+        self.assertTrue(np.min(df4["avg_tip"].values) == 3.180430107526883)
         self.assertTrue(df5.shape[0] == 110)
-        self.assertTrue(
-            np.min(df5["avg_tip"].values) == 2.01
-        )
+        self.assertTrue(np.min(df5["avg_tip"].values) == 2.01)

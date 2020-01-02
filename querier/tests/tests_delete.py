@@ -13,38 +13,25 @@ class Testdelete(ut.TestCase):
         df2 = qr.delete(df, "(tip > 5) & (size==2)")
         df3 = qr.delete(df, "(tip > 5) | (tip < 2)")
         df4 = qr.delete(df, '(tip > 5) & (sex == "Male")')
-        df5 = qr.delete(
-            df,
-            '(tip > 5) & (sex == "Male") & (smoker == "Yes")',
-        )
+        df5 = qr.delete(df, '(tip > 5) & (sex == "Male") & (smoker == "Yes")')
 
         self.assertTrue(df1.shape[0] == 226)
         self.assertTrue(
-            np.allclose(
-                df1["tip"].values.mean(), 2.7374336283185836
-            )
+            np.allclose(df1["tip"].values.mean(), 2.7374336283185836)
         )
         self.assertTrue(df2.shape[0] == 241)
         self.assertTrue(
-            np.allclose(
-                df2["tip"].values.mean(), 2.9665145228215772
-            )
+            np.allclose(df2["tip"].values.mean(), 2.9665145228215772)
         )
         self.assertTrue(df3.shape[0] == 181)
         self.assertTrue(
-            np.allclose(
-                df3["tip"].values.mean(), 3.0450828729281767
-            )
+            np.allclose(df3["tip"].values.mean(), 3.0450828729281767)
         )
         self.assertTrue(df4.shape[0] == 230)
         self.assertTrue(
-            np.allclose(
-                df4["tip"].values.mean(), 2.785521739130435
-            )
+            np.allclose(df4["tip"].values.mean(), 2.785521739130435)
         )
         self.assertTrue(df5.shape[0] == 239)
         self.assertTrue(
-            np.allclose(
-                df5["tip"].values.mean(), 2.9251882845188284
-            )
+            np.allclose(df5["tip"].values.mean(), 2.9251882845188284)
         )

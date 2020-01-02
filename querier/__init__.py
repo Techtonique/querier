@@ -19,5 +19,5 @@ __all__ = [
     select,
     summarize,
     update,
-    Querier
+    Querier,
 ]

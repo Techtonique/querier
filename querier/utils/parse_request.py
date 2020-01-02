@@ -16,42 +16,20 @@ import numpy as np
 def parse_request(x):
 
     # parse the request
-    y = re.compile(
-        r"(\bAND\b|\bOR\b|&|!=|==|<=|>=|<|>|\(|\)|\.\*)"
-    )
+    y = re.compile(r"(\bAND\b|\bOR\b|&|!=|==|<=|>=|<|>|\(|\)|\.\*)")
     y = y.split(x.replace(" ", ""))
     y = list(filter(("").__ne__, y))
 
     # one filtering condition
     if len(y) <= 5:
         try:
-            return (
-                "(df['"
-                + y[1]
-                + "']"
-                + " "
-                + y[2]
-                + " "
-                + y[3]
-                + ")"
-            )
+            return "(df['" + y[1] + "']" + " " + y[2] + " " + y[3] + ")"
         except:
-            return (
-                "(df['"
-                + y[0]
-                + "']"
-                + " "
-                + y[1]
-                + " "
-                + y[2]
-                + ")"
-            )
+            return "(df['" + y[0] + "']" + " " + y[1] + " " + y[2] + ")"
 
     # more filtering conditions
 
-    assert (
-        "(" in y
-    ), "parentheses must be provided for multiple conditions"
+    assert "(" in y, "parentheses must be provided for multiple conditions"
 
     step_size = 6
     idx = 0
@@ -125,17 +103,13 @@ def parse_request(x):
 def parse_update_request(x):
 
     if x[0] == "(":
-        raise ValueError(
-            "invalid request: do not use parentheses"
-        )
+        raise ValueError("invalid request: do not use parentheses")
 
     # parse the request
     try:
         y = x.replace(" ", "").split("=")
     except:
-        raise ValueError(
-            "invalid request: must be colname = f(colname)"
-        )
+        raise ValueError("invalid request: must be colname = f(colname)")
 
     key1 = y[0]
     exp_block2 = y[1]
@@ -143,16 +117,12 @@ def parse_update_request(x):
     idx_par_begin = y[1].find("(")  # e.g np.mean(tip)
 
     # parentheses found?
-    if (idx_par_begin > 0) & (
-        z.find("(") > 0
-    ):  # e.g np.mean(tip)
+    if (idx_par_begin > 0) & (z.find("(") > 0):  # e.g np.mean(tip)
 
         try:
             idx_par_end = z.find(")")
         except:
-            raise ValueError(
-                "invalid request: closing parenthese not found"
-            )
+            raise ValueError("invalid request: closing parenthese not found")
 
         t = z[(idx_par_begin + 1) : idx_par_end]
 
@@ -198,23 +168,11 @@ def parse_update_request(x):
             key3 = temp[-1]
             op = temp[1]
             return (
-                "df['"
-                + key1
-                + "']"
-                + " = "
-                + key2
-                + op
-                + "df['"
-                + key3
-                + "']"
+                "df['" + key1 + "']" + " = " + key2 + op + "df['" + key3 + "']"
             )
 
         return (
-            "df['"
-            + key1
-            + "']"
-            + " = "
-            + z.replace(key2, "df['" + key2 + "']")
+            "df['" + key1 + "']" + " = " + z.replace(key2, "df['" + key2 + "']")
         )
 
 
@@ -251,9 +209,7 @@ def parse_cols_request(x):
     for idx, elt in enumerate(cols_text_split):
         idx_as = elt.find("as")
         if idx_as > 0:
-            cols_text_split[idx] = elt[
-                (idx_as + 2) : len(elt)
-            ].replace(" ", "")
+            cols_text_split[idx] = elt[(idx_as + 2) : len(elt)].replace(" ", "")
 
     return [
         cols_text_split[idx].replace(" ", "")

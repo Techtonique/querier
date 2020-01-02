@@ -33,21 +33,9 @@ class Testupdate(ut.TestCase):
         df6 = qr.update(df, "new_tip = tip+3")  # ok
         del df
 
-        self.assertTrue(
-            np.allclose(df1["tip"].values[2], 7.0)
-        )
-        self.assertTrue(
-            np.allclose(df2["new_tip"].values[3], 9.93)
-        )
-        self.assertTrue(
-            np.allclose(df3["size"].values[2], 5)
-        )
-        self.assertTrue(
-            np.allclose(df4["new_size"].values[3], 5)
-        )
-        self.assertTrue(
-            np.allclose(df5["tip"].values[3], 2.31)
-        )
-        self.assertTrue(
-            np.allclose(df6["new_tip"].values[3], 6.31)
-        )
+        self.assertTrue(np.allclose(df1["tip"].values[2], 7.0))
+        self.assertTrue(np.allclose(df2["new_tip"].values[3], 9.93))
+        self.assertTrue(np.allclose(df3["size"].values[2], 5))
+        self.assertTrue(np.allclose(df4["new_size"].values[3], 5))
+        self.assertTrue(np.allclose(df5["tip"].values[3], 2.31))
+        self.assertTrue(np.allclose(df6["new_tip"].values[3], 6.31))

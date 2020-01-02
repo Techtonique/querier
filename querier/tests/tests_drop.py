@@ -17,9 +17,7 @@ class Testdrop(ut.TestCase):
         df6 = qr.drop(df, "total_bill, tip, sex, day")
 
         self.assertTrue(df1.shape[1] == 6)
-        self.assertTrue(
-            "total_bill" not in df1.columns.values
-        )
+        self.assertTrue("total_bill" not in df1.columns.values)
         self.assertTrue(df2.shape[1] == 6)
         self.assertTrue("tip" not in df2.columns.values)
         self.assertTrue(df3.shape[1] == 6)
@@ -30,7 +28,5 @@ class Testdrop(ut.TestCase):
         self.assertTrue("day" not in df5.columns.values)
         self.assertTrue(
             df6.columns.values
-            == np.array(
-                ["smoker", "time", "size"], dtype=object
-            ).all()
+            == np.array(["smoker", "time", "size"], dtype=object).all()
         )

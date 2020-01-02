@@ -27,15 +27,18 @@ def request(df, req=None, **kwargs):
         return df
 
     # if req is not None:
-    assert 'UPDATE'.lower() not in req.lower(),\
-    "'UPDATE' is forbidden here, try querier.update"
-    
-    assert 'DELETE'.lower() not in req.lower(),\
-    "'DELETE' is forbidden here, try querier.delete"
-    
-    assert 'DROP'.lower() not in req.lower(),\
-    "'DROP' is forbidden here, try querier.drop"
-    
+    assert (
+        "UPDATE".lower() not in req.lower()
+    ), "'UPDATE' is forbidden here, try querier.update"
+
+    assert (
+        "DELETE".lower() not in req.lower()
+    ), "'DELETE' is forbidden here, try querier.delete"
+
+    assert (
+        "DROP".lower() not in req.lower()
+    ), "'DROP' is forbidden here, try querier.drop"
+
     try:
 
         engine = create_engine("sqlite://", echo=False)
@@ -48,6 +51,4 @@ def request(df, req=None, **kwargs):
 
     except:
 
-        raise ValueError(
-            "invalid request: check SQL syntax"
-        )
+        raise ValueError("invalid request: check SQL syntax")
