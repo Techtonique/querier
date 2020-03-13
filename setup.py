@@ -18,7 +18,7 @@ setup(
     name='querier',
     version=__version__,
     description='Querying data-frames',
-    long_description=long_description,
+    long_description="A query language for data frames",
     url='https://github.com/thierrymoudiki/querier',
     download_url='https://github.com/thierrymoudiki/querier/tarball/' + __version__,
     license='BSD',
