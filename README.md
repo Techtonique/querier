@@ -6,7 +6,13 @@ Data Frames are widely used and useful structures for data wrangling. The `queri
 
 ## Installation 
 
-- Currently from Github, for the development version: 
+- From Pypi: 
+
+```bash
+pip install querier 
+```
+
+- From Github, for the development version: 
 
 ```bash
 pip install git+https://github.com/thierrymoudiki/querier.git
