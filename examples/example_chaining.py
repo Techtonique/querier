@@ -15,7 +15,7 @@ df = pd.read_csv(url)
 
 # Example 1 -----
 
-qrobj = qr.Querier(df)
+qrobj = qr.Querier(df=df)
 
 df1 = qrobj\
 .select(req="tip, sex, smoker, time")\
