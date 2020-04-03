@@ -1,5 +1,3 @@
-"""Select data"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -20,6 +18,37 @@ from ..utils import memoize
 def select(
     df, req="*", order_by=None, asc=True, limit=None, random=False, seed=123
 ):
+    """ Select columns.
+       
+       Parameters
+       ----------
+       df: a data frame
+           a data frame
+       
+       req: str
+           comma-separated columns names
+       
+       order_by: str
+           sort the results by using these columns (optional)
+     
+       asc: bool
+           if `order_by` is provided, `True` means: ascending ordering 
+     
+       limit: int
+           number of records to be retrieved 
+    
+       random: bool
+           `True` if we want a random set of records 
+       
+       seed: int
+           reproducibility seed for situations where `random == True`
+       
+       Examples
+       --------
+       
+       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+    """
 
     n, p = df.shape
 

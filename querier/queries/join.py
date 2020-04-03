@@ -1,5 +1,3 @@
-"""Join data frames"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -22,7 +20,30 @@ from ..utils import memoize
 # join(df1, df2, 'key', "outer")
 @memoize
 def join(df1, df2, on=None, type_join="inner", **kwargs):
-
+    """ Join data frames.
+   
+       Parameters
+       ----------
+       df1: a data frame           
+           a data frame
+       
+       df2: a data frame           
+           a data frame
+       
+       on: str
+           joining column/criterion
+       
+       type_join: str           
+           type of join. Options are: "left", "right", "outer", "inner". 
+           Default is "inner" join.       
+       
+       
+       Examples
+       --------
+       
+       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+   
+   """
     if on is not None:
         on_ = on.replace(" ", "").split(",")
 

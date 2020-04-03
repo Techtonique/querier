@@ -1,5 +1,3 @@
-"""Summarize data frame"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -11,6 +9,28 @@ from ..utils import memoize
 
 @memoize
 def summarize(df, req=None, group_by=None, having=None, **kwargs):
+    """Data summaries on rows.
+       
+           Parameters
+           ----------
+           df: a data frame
+               a data frame
+               
+           req: str
+               specifying the aggregating operations on columns
+           
+           group_by: str
+               comma-separated list of columns to be aggregated
+           
+           having: str
+               filtering criterion on groups
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+        """
 
     if req is None:  # useless tho...
 

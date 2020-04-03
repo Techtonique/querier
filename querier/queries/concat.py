@@ -1,5 +1,3 @@
-"""Concatenate data frames"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -17,6 +15,26 @@ from ..utils import memoize
 # print(concat(df1, df2, axis="h"))
 @memoize
 def concat(df1, df2, axis="h", **kwargs):
+    """Concatenate data frames.
+       
+           Parameters
+           ----------
+           df1: a data frame
+               a data frame
+           
+           df2: a data frame           
+               a data frame
+           
+           axis: str
+               specify the type of concatenation: "h"=horizontal, "v"=vertical
+                      
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+       """
 
     assert axis in ("h", "v"), "must have axis in ('h', 'v')"
 

@@ -10,14 +10,14 @@ from .queries import update
 from .wrapper import Querier
 
 __all__ = [
-    concat,
-    delete,
-    drop,
-    filtr,
-    join,
-    request,
-    select,
-    summarize,
-    update,
-    Querier,
+    "concat",
+    "delete",
+    "drop",
+    "filtr",
+    "join",
+    "request",
+    "select",
+    "summarize",
+    "update",
+    "Querier",
 ]

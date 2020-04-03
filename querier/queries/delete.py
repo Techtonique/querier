@@ -1,5 +1,3 @@
-"""Delete data"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -14,6 +12,23 @@ from ..utils import memoize
 # delete(df, '(size == 2) | (size == 3)')
 @memoize
 def delete(df, req=None):
+    """Delete rows from a data frame.
+       
+           Parameters
+           ----------
+           df: a data frame 
+               a data frame
+               
+           req: str
+               criteria for filtering the rows to be deleted
+                      
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+       """
 
     if req is None:  # useless tho...
 

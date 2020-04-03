@@ -1,5 +1,3 @@
-"""Filter data"""
-
 # Authors: Thierry Moudiki
 #
 # License: BSD 3
@@ -28,6 +26,20 @@ from ..utils import memoize
 # filtr(df, req, limit=8, random=True)
 @memoize
 def filtr(df, req=None, limit=None, random=False, seed=123):
+    """ Filter rows, based on given criteria.
+   
+       Parameters
+       ----------
+       req: str
+           criteria for filtering the rows
+              
+       
+       Examples
+       --------
+       
+       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+   
+    """
 
     if req is None:  # useless tho...
 
