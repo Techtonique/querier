@@ -137,22 +137,22 @@ class Querier(BaseEstimator):
        Parameters
        ----------
        req: str
-       comma-separated columns names
+           comma-separated columns names
        
        order_by: str
-       sort the results by using these columns (optional)
+           sort the results by using these columns (optional)
      
        asc: bool
-       if `order_by` is provided, `True` means: ascending ordering 
+           if `order_by` is provided, `True` means: ascending ordering 
      
        limit: int
-       number of records to be retrieved 
+           number of records to be retrieved 
     
        random: bool
-       `True` if we want a random set of records 
+           `True` if we want a random set of records 
        
        seed: int
-       reproducibility seed for situations where `random == True`
+           reproducibility seed for situations where `random == True`
        
        Examples
        --------
@@ -170,7 +170,7 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           specifying the transformation, e.g `new_size = 3*size`
+               specifying the transformation, e.g `new_size = 3*size`
                       
            
            Examples
@@ -188,7 +188,7 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           criteria for filtering the rows to be deleted
+               criteria for filtering the rows to be deleted
                       
            
            Examples
@@ -206,10 +206,10 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            df2: A data frame
-           the data frame to be concatenated to our existing data 
+               the data frame to be concatenated to our existing data 
            
            axis: str
-           specify the type of concatenation: "h"=horizontal, "v"=vertical
+               specify the type of concatenation: "h"=horizontal, "v"=vertical
                       
            
            Examples
@@ -229,16 +229,16 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           criteria for filtering the rows
+               criteria for filtering the rows
 
            limit: int
-           number of records to be retrieved 
+               number of records to be retrieved 
         
            random: bool
-           `True` if we want a random set of records 
+               `True` if we want a random set of records 
            
            seed: int
-           reproducibility seed for situations where `random == True`
+               reproducibility seed for situations where `random == True`
                       
            
            Examples
@@ -257,14 +257,14 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            df2: A data frame
-           the data frame to be joined to our existing data 
+               the data frame to be joined to our existing data 
            
            on: str
-           joining column/criterion
+               joining column/criterion
            
            type_join: str           
-           type of join. Options are: "left", "right", "outer", "inner". 
-           Default is "inner" join.       
+               type of join. Options are: "left", "right", "outer", "inner". 
+               Default is "inner" join.       
            
            
            Examples
@@ -284,13 +284,13 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           specifying the aggregating operations on columns
+               specifying the aggregating operations on columns
            
            group_by: str
-           comma-separated list of columns to be aggregated
+               comma-separated list of columns to be aggregated
            
            having: str
-           filtering criterion on groups
+               filtering criterion on groups
            
            Examples
            --------
@@ -308,7 +308,7 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           comma-separated list of columns to be dropped
+               comma-separated list of columns to be dropped
                       
            
            Examples
@@ -327,7 +327,7 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            req: str
-           specifying the SQL request
+               specifying the SQL request
                       
            
            Examples
@@ -346,14 +346,14 @@ class Querier(BaseEstimator):
            Parameters
            ----------
            output: str
-           csv file path, sql table name, mongo db collection name
+               csv file path, sql table name, mongo db collection name
            
            conn: a database connexion
-           database connexion (optional). Default: use the current object's 
-           connexion, if provided. 
+               database connexion (optional). Default: use the current object's 
+               connexion, if provided. 
            
            db: str
-           collection name (optional), if `conn` is a mongo db connexion
+               collection name (optional), if `conn` is a mongo db connexion
            
            Examples
            --------
