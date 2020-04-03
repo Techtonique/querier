@@ -6,6 +6,14 @@ Data Frames are widely used and useful structures for data wrangling. The `queri
 
 ![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier) 
 
+## Contents 
+ [Installation](#Installation) |
+ [Package description](#package-description) |
+ [Contributing](#Contributing) |
+ [Tests](#Tests) |
+ [API Documentation](#api-documentation) |
+ [Dependencies](#dependencies) |
+ [License](#License) 
 
 ## Installation 
 
@@ -62,11 +70,20 @@ pip install black
 black --line-length=80 file_submitted_for_pr.py
 ```
 
+## Tests
+
+TBD
+
+## API documentation
+
+[https://querier.readthedocs.io/en/latest/](https://querier.readthedocs.io/en/latest/)
+
 ## Dependencies 
 
 - Numpy
 - Pandas
 - SQLite3
+
 
 ## License
 
