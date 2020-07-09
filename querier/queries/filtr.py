@@ -14,7 +14,7 @@ from ..utils import memoize
 # filtr(df, req, limit=4, random=True)
 #
 # req = "(tip>1.5)"
-# filtr(df, req, limit=7, random=False)
+# filtr(df, req, limit=7, random=False)œ
 # filtr(df, req, limit=5, random=True)
 #
 # req = "(tip > 5) & (size > 3)"
@@ -28,16 +28,25 @@ from ..utils import memoize
 def filtr(df, req=None, limit=None, random=False, seed=123):
     """ Filter rows, based on given criteria.
    
-       Parameters
-       ----------
-       req: str
-           criteria for filtering the rows
+           Parameters
+           ----------
+           req: str
+               criteria for filtering the rows
+
+           limit: int
+               number of records to be retrieved 
+        
+           random: bool
+               `True` if we want a random set of records 
+           
+           seed: int
+               reproducibility seed for situations where `random == True`
               
        
-       Examples
-       --------
+           Examples
+           --------
        
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
    
     """
 

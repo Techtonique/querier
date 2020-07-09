@@ -13,7 +13,7 @@ import numpy as np
 # req = "(tip > 5) & (size > 3)"
 # req = "(tip > 5) & (size > 3) & (sex = 'Male')"
 # req = "(tip > 5) & (size > 3) & (sex == 'Male')"
-def parse_request(x):
+def parse_request(x, return_cols=False):
 
     # parse the request
     y = re.compile(r"(\bAND\b|\bOR\b|&|!=|==|<=|>=|<|>|\(|\)|\.\*)")
@@ -22,10 +22,17 @@ def parse_request(x):
 
     # one filtering condition
     if len(y) <= 5:
-        try:
-            return "(df['" + y[1] + "']" + " " + y[2] + " " + y[3] + ")"
-        except:
-            return "(df['" + y[0] + "']" + " " + y[1] + " " + y[2] + ")"
+        if return_cols == False:    
+            try:
+                return "(df['" + y[1] + "']" + " " + y[2] + " " + y[3] + ")"
+            except:
+                return "(df['" + y[0] + "']" + " " + y[1] + " " + y[2] + ")"
+        else:
+            try:
+                return "(df['" + y[1] + "']" + " " + y[2] + " " + y[3] + ")", y[1]
+            except:
+                return "(df['" + y[0] + "']" + " " + y[1] + " " + y[2] + ")", y[0]
+            
 
     # more filtering conditions
 
@@ -37,6 +44,8 @@ def parse_request(x):
     ops_conds = []
     right_exps = []
     ops_between_conds = []
+    
+    
 
     while idx < 3:
         try:
@@ -56,7 +65,7 @@ def parse_request(x):
         except:
             pass
         idx += 1
-
+        
     n_conds = len(left_exps)
     str_conds = (
         "(df['"
@@ -90,8 +99,10 @@ def parse_request(x):
                 "invalid request: check column names, column contents, operators and parentheses"
             )
             return
-
-    return str_conds
+    
+    if return_cols == False:    
+        return str_conds
+    return str_conds, left_exps
 
 
 # parse_update_request('tip = 2*tip')

@@ -20,6 +20,7 @@ from ..queries import (
     summarize as summarize_,
     drop as drop_,
     request as request_,
+    setwhere as setwhere_,
 )
 
 
@@ -122,6 +123,43 @@ class Querier(BaseEstimator):
         self.nrows = self.df.shape[0]
         self.ncols = self.df.shape[1]
         self.dtypes = self.df.dtypes.values
+    
+    
+    def get_df(self, return_values=False):
+        """Get object's data frame attribute.
+       
+           Parameters
+           ----------
+           return_values: bool
+               If True, a numpy array is returned. Otherwise, a data frame (default).
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+       """
+        if return_values:
+            return self.df.values
+        return self.df    
+
+    def set_df(self, df):
+        """Set object's data frame attribute.
+       
+           Parameters
+           ----------
+           df: A data frame
+               the data frame to be concatenated to our existing data 
+           
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+       """
+        
+        self.df = df                
 
     def select(
         self,
@@ -338,6 +376,34 @@ class Querier(BaseEstimator):
        """
 
         self.df = request_(self.df, req, **kwargs)
+        return self
+
+    def setwhere(self, col, val, replace):
+        """ Set value.
+       
+           Parameters
+           ----------
+           col: str
+               column to be filtered on
+           
+           val: object
+               value to be replaced in column `col`
+               
+           replace: object
+               replacement value
+           
+           copy: bool
+               If True, a new data frame is created else input data frame is modified (default False)
+           
+           Examples
+           --------
+           
+           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+       
+        """
+
+        self.df = setwhere_(self.df, col=col, val=val, 
+                            replace=replace, copy=False)
         return self
 
     def write(self, output, conn=None, db=None, **kwargs):
