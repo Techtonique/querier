@@ -11,23 +11,21 @@ from ..utils import parse_update_request
 # update(df, 'tip = np.mean(tip)')
 # update(df, 'toto = np.mean(tip)')
 def update(df, req=None):
-    """Update the data frame.
+    """ Update the data frame.
    
-   Parameters
-   ----------
-   df: a data frame
-       a data frame
+    Args:           
+
+        df: a data frame
+            a data frame
        
-   req: str
-       specifying the transformation, e.g `new_size = 3*size`
-              
+        req: str
+            specifying the transformation, e.g `new_size = 3*size`
+                 
+    Examples: 
    
-   Examples
-   --------
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
    
-   https://github.com/thierrymoudiki/querier/tree/master/querier/demo
-   
-   """
+    """
 
     if req is None:  # useless tho...
 

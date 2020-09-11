@@ -19,23 +19,22 @@ from ..utils import memoize
 # request(df, "SELECT SUM(tip), smoker FROM df GROUP BY smoker having tip > 1.5")
 @memoize
 def request(df, req=None, **kwargs):
-    """SQL request on a data frame.
+    """ SQL request on a data frame.
        
-           Parameters
-           ----------
-           df: a data frame
-               a data frame
+    Args:           
+    
+        df: a data frame
+            a data frame
            
-           req: str
-               specifying the SQL request
+        req: str
+            specifying the SQL request
                       
            
-           Examples
-           --------
+    Examples:           
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
-       """
+    """
 
     if req is None:  # useless tho...
 

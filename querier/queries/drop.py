@@ -10,16 +10,14 @@ from ..utils import memoize
 def drop(df, req=None):
     """ Drop columns.
        
-       Parameters
-       ----------
-       req: str
-           comma-separated list of columns to be dropped
-              
+    Args: 
        
-       Examples
-       --------
+        req: str
+            comma-separated list of columns to be dropped
+                     
+    Examples:     
        
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
     """
 

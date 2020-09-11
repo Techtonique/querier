@@ -14,21 +14,19 @@ from ..utils import memoize
 def delete(df, req=None):
     """Delete rows from a data frame.
        
-           Parameters
-           ----------
-           df: a data frame 
-               a data frame
+    Args:           
+        
+        df: a data frame 
+            a data frame
                
-           req: str
-               criteria for filtering the rows to be deleted
-                      
+        req: str
+            criteria for filtering the rows to be deleted
+                                 
+    Examples:    
            
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
-       """
+    """
 
     if req is None:  # useless tho...
 

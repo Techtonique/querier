@@ -17,24 +17,22 @@ from ..utils import memoize
 def concat(df1, df2, axis="h", **kwargs):
     """Concatenate data frames.
        
-           Parameters
-           ----------
-           df1: a data frame
-               a data frame
+    Args:           
+        
+        df1: a data frame
+            a data frame
            
-           df2: a data frame           
-               a data frame
+        df2: a data frame           
+            a data frame
            
-           axis: str
-               specify the type of concatenation: "h"=horizontal, "v"=vertical
-                      
+        axis: str
+            specify the type of concatenation: "h"=horizontal, "v"=vertical
+                                 
+    Examples:
            
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
-       """
+    """
 
     assert axis in ("h", "v"), "must have axis in ('h', 'v')"
 
