@@ -12,27 +12,26 @@ warnings.filterwarnings("ignore")
 def setwhere(df, col, val, replace, copy=False):
     """ Set value.
    
-       Parameters
-       ----------
-       df: a data frame
+    Args:
+       
+        df: a data frame
            a data frame
        
-       col: str
+        col: str
            column to be filtered on
        
-       val: object
+        val: object
            value to be replaced in column `col`
            
-       replace: object
+        replace: object
            replacement value
        
-       copy: bool
+        copy: bool
            If True, a new data frame is created else input data frame is modified (default False)
        
-       Examples
-       --------
+    Examples: 
        
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
    
     """
     

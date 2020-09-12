@@ -1,0 +1,21 @@
+site_name: querier
+theme:
+  name: darkly # sandstone # slate # lux # darkly
+  nav_style: dark
+  #name: null
+  #custom_dir: 'custom_theme/'
+
+docs_dir: sources
+repo_url: https://github.com/Techtonique/querier
+edit_uri: ""
+site_description: 'Documentation for the querier.'
+
+nav:
+    - Quickstart examples: examples/examples.md
+    - Documentation: 
+      - Queries: documentation/queries.md
+      - Wrapper: documentation/querier.md
+    - Contributing: CONTRIBUTING.md  
+    - License: LICENSE.md
+      
+        

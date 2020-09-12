@@ -28,25 +28,23 @@ from ..utils import memoize
 def filtr(df, req=None, limit=None, random=False, seed=123):
     """ Filter rows, based on given criteria.
    
-           Parameters
-           ----------
-           req: str
-               criteria for filtering the rows
+    Args:    
 
-           limit: int
-               number of records to be retrieved 
+        req: str
+            criteria for filtering the rows
+
+        limit: int
+            number of records to be retrieved 
         
-           random: bool
-               `True` if we want a random set of records 
+        random: bool
+            `True` if we want a random set of records 
            
-           seed: int
-               reproducibility seed for situations where `random == True`
-              
+        seed: int
+            reproducibility seed for situations where `random == True`
+                     
+    Examples:           
        
-           Examples
-           --------
-       
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
    
     """
 

@@ -25,28 +25,27 @@ from ..queries import (
 
 
 class Querier(BaseEstimator):
-    """A wrapper for chaining the querier's atomic operations, which are currently:
+    """ A wrapper for chaining the querier's atomic operations, which are currently:
        `concat`, `delete`, `drop`, `filtr`, `join`, `select`, `summarize`,
        `update`, `request`
        
-       Parameters
-       ----------
-       df: a data frame
-           a data frame (optional)
-           
-       source: str
-           a csv file path, sql database path, or mongo db uri
-                 
-       db: str
-           database name, if `source` is a mongo db uri
-                 
-       table: str
-           name of the table/collection, if `source` is provided and is a database
-           
-       Examples
-       --------
+    Attributes: 
        
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        df: a data frame
+            a data frame (optional)
+           
+        source: str
+            a csv file path, sql database path, or mongo db uri
+                 
+        db: str
+            database name, if `source` is a mongo db uri
+                 
+        table: str
+            name of the table/collection, if `source` is provided and is a database
+           
+    Examples:
+       
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
     """
 
@@ -126,36 +125,34 @@ class Querier(BaseEstimator):
     
     
     def get_df(self, return_values=False):
-        """Get object's data frame attribute.
+        """ Get object's data frame attribute.
        
-           Parameters
-           ----------
-           return_values: bool
-               If True, a numpy array is returned. Otherwise, a data frame (default).
+        Args:          
+
+            return_values: bool
+                If True, a numpy array is returned. Otherwise, a data frame (default).
            
-           Examples
-           --------
+        Examples:
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
+
         if return_values:
             return self.df.values
         return self.df    
 
     def set_df(self, df):
-        """Set object's data frame attribute.
+        """ Set object's data frame attribute.
        
-           Parameters
-           ----------
-           df: A data frame
-               the data frame to be concatenated to our existing data 
+        Args:           
+        
+            df: A data frame
+                the data frame to be concatenated to our existing data 
+                      
+        Examples:
            
-           
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
         
@@ -172,88 +169,83 @@ class Querier(BaseEstimator):
     ):
         """ Select columns.
        
-       Parameters
-       ----------
-       req: str
-           comma-separated columns names
+        Args:
+
+            req: str
+            comma-separated columns names
+        
+            order_by: str
+            sort the results by using these columns (optional)
+        
+            asc: bool
+            if `order_by` is provided, `True` means: ascending ordering 
+        
+            limit: int
+            number of records to be retrieved 
+        
+            random: bool
+            `True` if we want a random set of records 
+        
+            seed: int
+            reproducibility seed for situations where `random == True`
        
-       order_by: str
-           sort the results by using these columns (optional)
-     
-       asc: bool
-           if `order_by` is provided, `True` means: ascending ordering 
-     
-       limit: int
-           number of records to be retrieved 
-    
-       random: bool
-           `True` if we want a random set of records 
+        Examples:
        
-       seed: int
-           reproducibility seed for situations where `random == True`
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
-       Examples
-       --------
-       
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
-       
-    """
+        """
 
         self.df = select_(self.df, req, order_by, asc, limit, random, seed)
         return self
 
     def update(self, req=None):
-        """Update the data frame.
+        """ Update the data frame.
        
-           Parameters
-           ----------
-           req: str
+        Args:  
+
+            req: str
                specifying the transformation, e.g `new_size = 3*size`
                       
            
-           Examples
-           --------
+        Examples: 
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
         self.df = update_(self.df, req)
         return self
 
     def delete(self, req=None):
-        """Delete rows from the data frame.
+        """ Delete rows from the data frame.
        
-           Parameters
-           ----------
-           req: str
+        Args:
+
+            req: str
                criteria for filtering the rows to be deleted
                       
            
-           Examples
-           --------
+        Examples: 
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
         self.df = delete_(self.df, req)
         return self
 
     def concat(self, df2, axis="h", **kwargs):
-        """Concatenate data frames.
+        """ Concatenate data frames.
        
-           Parameters
-           ----------
-           df2: A data frame
+        Args:           
+        
+            df2: A data frame
                the data frame to be concatenated to our existing data 
            
-           axis: str
+            axis: str
                specify the type of concatenation: "h"=horizontal, "v"=vertical
-                      
+                                 
+        Examples: 
            
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -262,27 +254,25 @@ class Querier(BaseEstimator):
         return self
 
     def filtr(self, req=None, limit=None, random=False, seed=123):
-        """Filter rows, based on given criteria.
+        """ Filter rows, based on given criteria.
        
-           Parameters
-           ----------
-           req: str
+        Args:           
+        
+            req: str
                criteria for filtering the rows
 
-           limit: int
+            limit: int
                number of records to be retrieved 
         
-           random: bool
+            random: bool
                `True` if we want a random set of records 
            
-           seed: int
+            seed: int
                reproducibility seed for situations where `random == True`
-                      
-           
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+                                 
+        Examples:            
+
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -290,14 +280,14 @@ class Querier(BaseEstimator):
         return self
 
     def join(self, df2, on=None, type_join="inner", **kwargs):
-        """Join data frames into our existing data frame.
+        """ Join data frames into our existing data frame.
        
-           Parameters
-           ----------
-           df2: A data frame
-               the data frame to be joined to our existing data 
+        Args:           
+        
+            df2: A data frame
+                the data frame to be joined to our existing data 
            
-           on: str
+            on: str
                joining column/criterion
            
            type_join: str           
@@ -305,10 +295,9 @@ class Querier(BaseEstimator):
                Default is "inner" join.       
            
            
-           Examples
-           --------
+        Examples:        
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -317,23 +306,22 @@ class Querier(BaseEstimator):
         return self
 
     def summarize(self, req=None, group_by=None, having=None, **kwargs):
-        """Data summaries on rows.
+        """ Data summaries on rows.
        
-           Parameters
-           ----------
-           req: str
+        Args:           
+            
+            req: str
                specifying the aggregating operations on columns
            
-           group_by: str
+            group_by: str
                comma-separated list of columns to be aggregated
            
-           having: str
+            having: str
                filtering criterion on groups
            
-           Examples
-           --------
+        Examples:           
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -341,18 +329,16 @@ class Querier(BaseEstimator):
         return self
 
     def drop(self, req=None):
-        """Drop columns.
+        """ Drop columns.
        
-           Parameters
-           ----------
-           req: str
-               comma-separated list of columns to be dropped
-                      
+        Args:           
+        
+            req: str
+               comma-separated list of columns to be dropped                      
            
-           Examples
-           --------
+        Examples:
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -360,18 +346,16 @@ class Querier(BaseEstimator):
         return self
 
     def request(self, req=None, **kwargs):
-        """SQL request on the data frame.
+        """ SQL request on the data frame.
        
-           Parameters
-           ----------
-           req: str
-               specifying the SQL request
-                      
+        Args:           
+        
+            req: str
+                specifying the SQL request
+                                 
+        Examples:           
            
-           Examples
-           --------
-           
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 
@@ -381,24 +365,23 @@ class Querier(BaseEstimator):
     def setwhere(self, col, val, replace):
         """ Set value.
        
-           Parameters
-           ----------
-           col: str
+        Args:           
+            
+            col: str
                column to be filtered on
            
-           val: object
+            val: object
                value to be replaced in column `col`
                
-           replace: object
+            replace: object
                replacement value
            
-           copy: bool
+            copy: bool
                If True, a new data frame is created else input data frame is modified (default False)
            
-           Examples
-           --------
+        Examples:
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
         """
 
@@ -407,24 +390,23 @@ class Querier(BaseEstimator):
         return self
 
     def write(self, output, conn=None, db=None, **kwargs):
-        """Export data frame's content to csv file or database.
+        """ Export data frame's content to csv file or database.
        
-           Parameters
-           ----------
-           output: str
-               csv file path, sql table name, mongo db collection name
+        Args:           
+        
+            output: str
+                    csv file path, sql table name, mongo db collection name
            
-           conn: a database connexion
-               database connexion (optional). Default: use the current object's 
-               connexion, if provided. 
+            conn: a database connexion
+                database connexion (optional). Default: use the current object's 
+                connexion, if provided. 
            
-           db: str
+            db: str
                collection name (optional), if `conn` is a mongo db connexion
            
-           Examples
-           --------
+        Examples:
            
-           https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+            https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
 

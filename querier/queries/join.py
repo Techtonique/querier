@@ -22,26 +22,24 @@ from ..utils import memoize
 def join(df1, df2, on=None, type_join="inner", **kwargs):
     """ Join data frames.
    
-       Parameters
-       ----------
-       df1: a data frame           
+    Args:
+    
+        df1: a data frame           
            a data frame
        
-       df2: a data frame           
+        df2: a data frame           
            a data frame
        
-       on: str
+        on: str
            joining column/criterion
        
-       type_join: str           
+        type_join: str           
            type of join. Options are: "left", "right", "outer", "inner". 
-           Default is "inner" join.       
+           Default is "inner" join.              
        
+    Examples: 
        
-       Examples
-       --------
-       
-       https://github.com/thierrymoudiki/querier/tree/master/querier/demo
+        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
    
    """
     if on is not None:
