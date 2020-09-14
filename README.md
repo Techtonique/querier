@@ -4,11 +4,11 @@
 
 Data Frames are widely used and useful structures for data wrangling. The `querier`  exposes a query language for Python `pandas` Data Frames, inspired from SQL's relational databases querying logic. 
 
-![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier) [![Documentation Status](https://readthedocs.org/projects/querier/badge/?version=latest)](https://querier.readthedocs.io/en/latest/?badge=latest)
+![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier) [![Documentation](https://img.shields.io/badge/documentation-is_here-green)](https://techtonique.github.io/querier/)
  
 
 ## Contents 
- [Installation](#Installation) |
+ [Installing](#Installing) |
  [Package description](#package-description) |
  [Contributing](#Contributing) |
  [Tests](#Tests) |
@@ -16,7 +16,7 @@ Data Frames are widely used and useful structures for data wrangling. The `queri
  [Dependencies](#dependencies) |
  [License](#License) 
 
-## Installation 
+## Installing 
 
 - From Pypi: 
 
@@ -77,7 +77,7 @@ TBD
 
 ## API documentation
 
-[https://querier.readthedocs.io/en/latest/](https://querier.readthedocs.io/en/latest/)
+[https://techtonique.github.io/querier/](https://techtonique.github.io/querier/)
 
 ## Dependencies 
 
