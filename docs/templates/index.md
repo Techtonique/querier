@@ -22,7 +22,11 @@ There are currently __9 main types of operations__ available in the `querier`, w
 - `update`: __updates a column__, using an operation given by the user
 - `request`: for operations more complex than the previous 8 ones, makes it possible to use a __SQL query on the Data Frame__
 
-## Installation 
+
+
+The __querier__’s source code is [available on GitHub](https://github.com/Techtonique/querier). You can read posts about the __querier__ [in this blog](https://thierrymoudiki.github.io/blog/#DataBases)
+
+## Installing 
 
 - From Pypi: 
 

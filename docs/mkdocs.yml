@@ -1,4 +1,4 @@
-site_name: querier
+site_name: Techtonique/querier
 theme:
   name: darkly # sandstone # slate # lux # darkly
   nav_style: dark
@@ -17,5 +17,6 @@ nav:
       - Wrapper: documentation/querier.md
     - Contributing: CONTRIBUTING.md  
     - License: LICENSE.md
+    - Techtonique: ../
       
         
