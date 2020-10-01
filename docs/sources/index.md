@@ -2,7 +2,7 @@
 
 # querier
 
-![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier)
+![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier) [![Last Commit](https://img.shields.io/github/last-commit/Techtonique/querier)](https://github.com/Techtonique/querier)
 
 Welcome to __querier__'s website.
 
@@ -37,5 +37,5 @@ pip install querier
 - From Github, for the development version: 
 
 ```bash
-pip install git+https://github.com/thierrymoudiki/querier.git
+pip install git+https://github.com/Techtonique/querier.git
 ```
