@@ -1,6 +1,6 @@
 
 
-# querier
+# querier | <a class="github-button" href="https://github.com/Techtonique/querier/stargazers" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Star dask/dask on GitHub">Star</a>
 
 ![PyPI](https://img.shields.io/pypi/v/querier) [![PyPI - License](https://img.shields.io/pypi/l/querier)](https://github.com/thierrymoudiki/querier/blob/master/LICENSE) [![Downloads](https://pepy.tech/badge/querier)](https://pepy.tech/project/querier) [![Last Commit](https://img.shields.io/github/last-commit/Techtonique/querier)](https://github.com/Techtonique/querier)
 
@@ -39,3 +39,5 @@ pip install querier
 ```bash
 pip install git+https://github.com/Techtonique/querier.git
 ```
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
