@@ -29,7 +29,7 @@ def generate(dest_dir):
 
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
-        'https://github.com/Techtonique/querier',
+        'https://github.com/Techtonique/querier/blob/master',
         template_dir,
         #querier_dir / 'examples'
     )
