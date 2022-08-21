@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-__version__ = '0.4.0'
+__version__ = '0.4.1'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -31,8 +31,6 @@ setup(
     packages=find_packages(exclude=['docs', 'tests*']),
     include_package_data=True,
     author='Thierry Moudiki',
-    install_requires=["numpy >= 1.13.0", "pandas >= 0.25.1", 
-                      "pymongo >= 3.10.1", "scipy >= 0.19.0", 
-                      "SQLAlchemy >= 1.3.9", "scikit-learn >= 0.18.0"].append(install_requires),
+    install_requires=install_requires,
     author_email='thierry.moudiki@gmail.com'
 )

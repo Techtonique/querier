@@ -8,8 +8,7 @@ import querier as qr
 
 # Import data -----
 
-url = ('https://raw.github.com/pandas-dev'
-   '/pandas/master/pandas/tests/data/tips.csv')
+url = ('https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/data/csv/tips.csv')
 df = pd.read_csv(url)
 
 
