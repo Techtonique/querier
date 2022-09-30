@@ -1,5 +1,5 @@
 greenlet==1.1.2
-joblib==1.1.0
+joblib==1.2.0
 numpy==1.23.2
 pandas==1.4.3
 pymongo==4.2.0
