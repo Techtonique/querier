@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 
 
-class Downloader:
+class Downloader(object):
     """Download datasets from data sources (R-universe for now)"""
 
     def __init__(self):
