@@ -6,7 +6,6 @@
 
 
 import pandas as pd
-from sklearn.base import BaseEstimator
 import sqlite3
 from pymongo import MongoClient
 
@@ -24,7 +23,7 @@ from ..queries import (
 )
 
 
-class Querier(BaseEstimator):
+class Querier(object):
     """ A wrapper for chaining the querier's atomic operations, which are currently:
        `concat`, `delete`, `drop`, `filtr`, `join`, `select`, `summarize`,
        `update`, `request`
