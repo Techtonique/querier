@@ -4,7 +4,7 @@
 
 
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text 
 from ..utils import parse_cols_request
 
 
@@ -58,7 +58,7 @@ def request(df, req=None, **kwargs):
         engine = create_engine("sqlite://", echo=False)
         df.to_sql("df", con=engine, **kwargs)
         with engine.connect() as conn:
-            req_res = conn.execute(req.upper()).fetchall()
+            req_res = conn.execute(text(req.upper())).fetchall()
         col_names = parse_cols_request(req)
         return pd.DataFrame(req_res, columns=col_names)
 
