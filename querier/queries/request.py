@@ -6,7 +6,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 from ..utils import parse_cols_request
-from ..utils import memoize
+
 
 # request(df, "SELECT tip, smoker, day FROM df WHERE tip > 25")
 # request(df, "SELECT tip, smoker, day, size FROM df WHERE (tip > 2) and (size > 4)")
@@ -17,7 +17,7 @@ from ..utils import memoize
 # request(df, "SELECT AVG(tip) as avg_tip, size, smoker FROM df WHERE tip > 20 GROUP BY size")
 # request(df, "SELECT avg(tip) as avg_tip, AVG(size) as   avg_size, smoker FROM df WHERE tip > 20 GROUP BY size, tip")
 # request(df, "SELECT SUM(tip), smoker FROM df GROUP BY smoker having tip > 1.5")
-@memoize
+
 def request(df, req=None, **kwargs):
     """ SQL request on a data frame.
        

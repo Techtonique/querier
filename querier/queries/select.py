@@ -4,7 +4,7 @@
 
 
 import numpy as np
-from ..utils import memoize
+
 
 
 # select(df, req='tip, sex', limit=4, random=True, seed=5)
@@ -14,7 +14,7 @@ from ..utils import memoize
 # select(df, req='*', limit=7, random=True, seed=1430)
 # select(df, req="day, time, sex", limit=10, random=True, seed=140)
 # select(df, req="day, time, sex")
-@memoize
+
 def select(
     df, req="*", order_by=None, asc=True, limit=None, random=False, seed=123
 ):

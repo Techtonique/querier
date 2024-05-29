@@ -5,12 +5,12 @@
 
 import numpy as np
 from ..utils import parse_request
-from ..utils import memoize
+
 
 
 # delete(df, 'tip > 1.5')
 # delete(df, '(size == 2) | (size == 3)')
-@memoize
+
 def delete(df, req=None):
     """Delete rows from a data frame.
        

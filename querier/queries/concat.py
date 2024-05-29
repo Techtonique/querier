@@ -5,7 +5,7 @@
 
 import pandas as pd
 import numpy as np
-from ..utils import memoize
+
 
 
 # df1 = pd.DataFrame({'key': ['A', 'B', 'C', 'D'],
@@ -13,7 +13,7 @@ from ..utils import memoize
 # df2 = pd.DataFrame({'key': ['B', 'D', 'D', 'E'],
 #                    'value': np.random.randn(4)})
 # print(concat(df1, df2, axis="h"))
-@memoize
+
 def concat(df1, df2, axis="h", **kwargs):
     """Concatenate data frames.
        

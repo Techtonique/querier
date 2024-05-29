@@ -4,10 +4,10 @@
 
 
 from .request import request
-from ..utils import memoize
 
 
-@memoize
+
+
 def summarize(df, req=None, group_by=None, having=None, **kwargs):
     """ Data summaries on rows.
        

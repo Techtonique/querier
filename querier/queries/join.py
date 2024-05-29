@@ -4,7 +4,7 @@
 
 
 import pandas as pd
-from ..utils import memoize
+
 
 
 # just for 'completeness' of the interface
@@ -18,7 +18,7 @@ from ..utils import memoize
 # join(df1, df2, 'key', "left")
 # join(df1, df2, 'key', "right")
 # join(df1, df2, 'key', "outer")
-@memoize
+
 def join(df1, df2, on=None, type_join="inner", **kwargs):
     """ Join data frames.
    
