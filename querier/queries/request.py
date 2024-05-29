@@ -60,9 +60,7 @@ def request(df, req=None, **kwargs):
         with engine.connect() as conn:
             req_res = conn.execute(req.upper()).fetchall()
         col_names = parse_cols_request(req)
-        df_res = pd.DataFrame(req_res, columns=col_names)
-
-        return df_res
+        return pd.DataFrame(req_res, columns=col_names)
 
     except:
 
