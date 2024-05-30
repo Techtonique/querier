@@ -6,10 +6,10 @@
 
 
 import pandas as pd
-from sklearn.base import BaseEstimator
+import polars as pl
 import sqlite3
 from pymongo import MongoClient
-
+from ..utils import polars_to_pandas, pandas_to_polars
 from ..queries import (
     select as select_,
     update as update_,
@@ -24,7 +24,7 @@ from ..queries import (
 )
 
 
-class Querier(BaseEstimator):
+class Querier(object):
     """ A wrapper for chaining the querier's atomic operations, which are currently:
        `concat`, `delete`, `drop`, `filtr`, `join`, `select`, `summarize`,
        `update`, `request`
@@ -51,7 +51,7 @@ class Querier(BaseEstimator):
 
     def __init__(self, df=None, source=None, db=None, table=None, **kwargs):
 
-        if (df is not None) & isinstance(df, pd.DataFrame):
+        if (df is not None):
 
             assert (source is None) & (
                 table is None
@@ -253,7 +253,7 @@ class Querier(BaseEstimator):
         self.df = concat_(self.df, df2, axis, **kwargs)
         return self
 
-    def filtr(self, req=None, limit=None, random=False, seed=123):
+    def filtr(self, req, limit=None, random=False, seed=123):
         """ Filter rows, based on given criteria.
        
         Args:           
@@ -300,12 +300,10 @@ class Querier(BaseEstimator):
             https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
        """
-
-        assert isinstance(df2, pd.DataFrame), "'df2' must be a data frame"
         self.df = join_(self.df, df2, on, type_join, **kwargs)
         return self
 
-    def summarize(self, req=None, group_by=None, having=None, **kwargs):
+    def summarize(self, req, group_by=None, having=None, **kwargs):
         """ Data summaries on rows.
        
         Args:           
@@ -328,7 +326,7 @@ class Querier(BaseEstimator):
         self.df = summarize_(self.df, req, group_by, having, **kwargs)
         return self
 
-    def drop(self, req=None):
+    def drop(self, req):
         """ Drop columns.
        
         Args:           
@@ -345,7 +343,7 @@ class Querier(BaseEstimator):
         self.df = drop_(self.df, req)
         return self
 
-    def request(self, req=None, **kwargs):
+    def request(self, req, **kwargs):
         """ SQL request on the data frame.
        
         Args:           

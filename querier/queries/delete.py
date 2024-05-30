@@ -4,14 +4,15 @@
 
 
 import numpy as np
+import polars as pl
 from ..utils import parse_request
-from ..utils import memoize
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 # delete(df, 'tip > 1.5')
 # delete(df, '(size == 2) | (size == 3)')
-@memoize
-def delete(df, req=None):
+
+def delete(df, req):
     """Delete rows from a data frame.
        
     Args:           
@@ -28,13 +29,19 @@ def delete(df, req=None):
        
     """
 
-    if req is None:  # useless tho...
-
-        return df
+    if isinstance(df, pl.DataFrame):
+            
+        df = polars_to_pandas(df)
 
     # if request is not None:
     n, p = df.shape
 
     str_conds = parse_request(req)
 
-    return df[np.logical_not(eval(str_conds).values)]
+    result = df[np.logical_not(eval(str_conds).values)]
+
+    if isinstance(df, pl.DataFrame):
+
+        return pandas_to_polars(result)
+
+    return result 

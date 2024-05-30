@@ -9,6 +9,7 @@ from .queries import setwhere
 from .queries import summarize
 from .queries import update
 from .wrapper import Querier
+from .datasets import Downloader
 
 __all__ = [
     "concat",
@@ -22,4 +23,5 @@ __all__ = [
     "summarize",
     "update",
     "Querier",
+    "Downloader"
 ]
