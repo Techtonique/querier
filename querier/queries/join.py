@@ -4,8 +4,8 @@
 
 
 import pandas as pd
-
-
+import polars as pl
+from ..utils import polars_to_pandas, pandas_to_polars
 
 # just for 'completeness' of the interface
 # already straightforward in pd
@@ -45,4 +45,13 @@ def join(df1, df2, on=None, type_join="inner", **kwargs):
     if on is not None:
         on_ = on.replace(" ", "").split(",")
 
-    return pd.merge(df1, df2, on=on_, how=type_join, **kwargs)
+    if isinstance(df1, pl.DataFrame):
+         df1 = polars_to_pandas(df1)
+         df2 = polars_to_pandas(df2)
+
+    result = pd.merge(df1, df2, on=on_, how=type_join, **kwargs)
+
+    if isinstance(df1, pl.DataFrame):
+        return pandas_to_polars(result)
+    
+    return result

@@ -4,11 +4,13 @@
 
 
 from .request import request
+import pandas as pd
+import polars as pl
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 
-
-def summarize(df, req=None, group_by=None, having=None, **kwargs):
+def summarize(df, req, group_by=None, having=None, **kwargs):
     """ Data summaries on rows.
        
     Args:           
@@ -31,9 +33,11 @@ def summarize(df, req=None, group_by=None, having=None, **kwargs):
        
     """
 
-    if req is None:  # useless tho...
+    is_polars = False
 
-        return df
+    if isinstance(df, pl.DataFrame):
+        is_polars = True
+        df = polars_to_pandas(df)
 
     # if request is not None:
     assert group_by is not None, "group_by must be provided"
@@ -47,4 +51,6 @@ def summarize(df, req=None, group_by=None, having=None, **kwargs):
         ans += " HAVING "
         ans += having
 
+    if is_polars:
+        return pandas_to_polars(request(df, req=ans, **kwargs))
     return request(df, req=ans, **kwargs)

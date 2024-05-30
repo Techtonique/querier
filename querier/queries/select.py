@@ -4,6 +4,9 @@
 
 
 import numpy as np
+import pandas as pd
+import polars as pl
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 
@@ -48,6 +51,12 @@ def select(
        https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
     """
+    
+    is_polars = False
+
+    if isinstance(df, pl.DataFrame):
+        is_polars = True
+        df = polars_to_pandas(df)
 
     n, p = df.shape
 
@@ -60,19 +69,26 @@ def select(
 
             assert int(limit) == limit, "limit must be an integer"
 
-            if random == False:
-
+            if random == False:  
+                if is_polars:
+                    return pandas_to_polars(df.head(limit))                              
                 return df.head(limit)
 
             # if random == True:
             np.random.seed(seed)
-            return df.iloc[np.random.randint(low=0, high=n, size=limit),]
+            result = df.iloc[np.random.randint(low=0, high=n, size=limit),]
+            if is_polars:
+                return pandas_to_polars(result)
+            return result
 
         # if limit is not None:
         if order_by is None:
-
+            if is_polars:
+                return pandas_to_polars(df)
             return df
 
+        if is_polars:
+            return pandas_to_polars(df.sort_values(by=order_by_, ascending=asc))
         return df.sort_values(by=order_by_, ascending=asc)
 
     # if col_names != "*":
@@ -89,7 +105,10 @@ def select(
             if order_by is None:
 
                 try:
-                    return eval("df[[" + str_col_names + "]].head(limit)")
+                    result = eval("df[[" + str_col_names + "]].head(limit)")
+                    if is_polars:
+                        return pandas_to_polars(result) 
+                    return result
                 except:
                     raise ValueError(
                         "request must contain df"
@@ -100,11 +119,14 @@ def select(
         if order_by is None:
 
             try:
-                return eval(
+                result = eval(
                     "df[["
                     + str_col_names
                     + "]].iloc[np.random.randint(low=0, high=n, size=limit),:]"
                 )
+                if is_polars:
+                    return pandas_to_polars(result) 
+                return result
             except:
                 raise ValueError(
                     "request must contain df" "s column names (comma-separated)"
@@ -112,11 +134,14 @@ def select(
 
         # if order_by is not None:
         try:
-            return eval(
+            result = eval(
                 "df[["
                 + str_col_names
                 + "]].iloc[np.random.randint(low=0, high=n, size=limit),:].sort_values(by=order_by_, ascending=asc)"
             )
+            if is_polars:
+                return pandas_to_polars(result)
+            return result
         except:
             raise ValueError(
                 "request must contain df" "s column names (comma-separated)"
@@ -126,7 +151,10 @@ def select(
     if order_by is None:
 
         try:
-            return eval("df[[" + str_col_names + "]]")
+            result = eval("df[[" + str_col_names + "]]")
+            if is_polars:
+                return pandas_to_polars(result)
+            return result
         except:
             raise ValueError(
                 "request must contain df" "s column names (comma-separated)"
@@ -134,11 +162,14 @@ def select(
 
     # if order_by is not None:
     try:
-        return eval(
+        result = eval(
             "df[["
             + str_col_names
             + "]].sort_values(by=order_by_, ascending=asc)"
         )
+        if is_polars:
+            return pandas_to_polars(result)
+        return result
     except:
         raise ValueError(
             "request must contain df" "s column names (comma-separated)"

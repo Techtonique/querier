@@ -10,9 +10,7 @@ import sys
 
 # data -----
 
-url = ('https://raw.github.com/pandas-dev'
-   '/pandas/master/pandas/tests/data/tips.csv')
-
+url = url = ('https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/data/csv/tips.csv')
 
 # Example 1 - Import from csv -----
 
@@ -30,17 +28,19 @@ print(df1)
 # Example 2 - Import from sqlite3 -----
 
 # an sqlite3 database  connexion
-con = sqlite3.connect('people.db')
- 
-with con:
-    cur = con.cursor()    
-    cur.execute("CREATE TABLE Population(id INTEGER PRIMARY KEY, name TEXT, age INT, sex TEXT)")
-    cur.execute("INSERT INTO Population VALUES(NULL,'Michael',19, 'M')")
-    cur.execute("INSERT INTO Population VALUES(NULL,'Sandy', 41, 'F')")
-    cur.execute("INSERT INTO Population VALUES(NULL,'Betty', 34, 'F')")
-    cur.execute("INSERT INTO Population VALUES(NULL,'Chuck', 12, 'M')")
-    cur.execute("INSERT INTO Population VALUES(NULL,'Rich', 24, 'M')")
+try: 
+    con = sqlite3.connect('people.db')
     
+    with con:
+        cur = con.cursor()    
+        cur.execute("CREATE TABLE Population(id INTEGER PRIMARY KEY, name TEXT, age INT, sex TEXT)")
+        cur.execute("INSERT INTO Population VALUES(NULL,'Michael',19, 'M')")
+        cur.execute("INSERT INTO Population VALUES(NULL,'Sandy', 41, 'F')")
+        cur.execute("INSERT INTO Population VALUES(NULL,'Betty', 34, 'F')")
+        cur.execute("INSERT INTO Population VALUES(NULL,'Chuck', 12, 'M')")
+        cur.execute("INSERT INTO Population VALUES(NULL,'Rich', 24, 'M')")
+except:
+    pass     
 # create querier object from sqlite3 database 
 qrobj2 = qr.Querier(source='people.db', table="Population")    
 

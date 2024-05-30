@@ -4,8 +4,10 @@
 
 
 import pandas as pd
+import polars as pl
 from sqlalchemy import create_engine, text 
 from ..utils import parse_cols_request
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 # request(df, "SELECT tip, smoker, day FROM df WHERE tip > 25")
@@ -18,7 +20,7 @@ from ..utils import parse_cols_request
 # request(df, "SELECT avg(tip) as avg_tip, AVG(size) as   avg_size, smoker FROM df WHERE tip > 20 GROUP BY size, tip")
 # request(df, "SELECT SUM(tip), smoker FROM df GROUP BY smoker having tip > 1.5")
 
-def request(df, req=None, **kwargs):
+def request(df, req, **kwargs):
     """ SQL request on a data frame.
        
     Args:           
@@ -35,10 +37,6 @@ def request(df, req=None, **kwargs):
         https://github.com/thierrymoudiki/querier/tree/master/querier/demo
        
     """
-
-    if req is None:  # useless tho...
-
-        return df
 
     # if req is not None:
     assert (
@@ -60,7 +58,10 @@ def request(df, req=None, **kwargs):
         with engine.connect() as conn:
             req_res = conn.execute(text(req.upper())).fetchall()
         col_names = parse_cols_request(req)
-        return pd.DataFrame(req_res, columns=col_names)
+        result = pd.DataFrame(req_res, columns=col_names)
+        if isinstance(df, pl.DataFrame):
+            return(pandas_to_polars(result))
+        return result
 
     except:
 

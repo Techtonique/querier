@@ -4,7 +4,10 @@
 
 
 import numpy as np
+import pandas as pd
+import polars as pl
 from ..utils import parse_request
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 
@@ -25,7 +28,7 @@ from ..utils import parse_request
 # filtr(df, req, limit=7, random=False)
 # filtr(df, req, limit=8, random=True)
 
-def filtr(df, req=None, limit=None, random=False, seed=123):
+def filtr(df, req, limit=None, random=False, seed=123):
     """ Filter rows, based on given criteria.
    
     Args:    
@@ -48,9 +51,9 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
    
     """
 
-    if req is None:  # useless tho...
+    if isinstance(df, pl.DataFrame):
 
-        return df
+        df = polars_to_pandas(df)
 
     # if request is not None:
     n, p = df.shape
@@ -66,6 +69,8 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
         if random == False:
 
             try:
+                if isinstance(df, pl.DataFrame):
+                    return pandas_to_polars(df_res.head(limit))
                 return df_res.head(limit)
             except:
                 raise ValueError(
@@ -75,11 +80,14 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
         # if random == True:
         try:
             np.random.seed(seed)
-            return df_res.iloc[
+            df_res.iloc[
                 np.random.choice(
                     range(0, df_res.shape[0]), size=limit, replace=False
                 ),
             ]
+            if isinstance(df, pl.DataFrame):
+                return pandas_to_polars(df_res)
+            return df_res
         except:
             raise ValueError(
                 "invalid request: check column names + contents (and parentheses for multiple conditions)"
@@ -87,6 +95,8 @@ def filtr(df, req=None, limit=None, random=False, seed=123):
 
     # if limit is None:
     try:
+        if isinstance(df, pl.DataFrame):
+            return pandas_to_polars(df_res)
         return df_res
     except:
         raise ValueError(

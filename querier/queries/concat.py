@@ -4,7 +4,9 @@
 
 
 import pandas as pd
+import polars as pl
 import numpy as np
+from ..utils import polars_to_pandas, pandas_to_polars
 
 
 
@@ -36,6 +38,12 @@ def concat(df1, df2, axis="h", **kwargs):
 
     assert axis in ("h", "v"), "must have axis in ('h', 'v')"
 
+    if isinstance(df1, pl.DataFrame):
+        df1 = polars_to_pandas(df1)
+    
+    if isinstance(df2, pl.DataFrame):
+        df2 = polars_to_pandas(df2)
+
     if axis == "h":
 
         assert (
@@ -49,6 +57,8 @@ def concat(df1, df2, axis="h", **kwargs):
 
         df.columns = np.append(df1.columns.values, df2.columns.values)
 
+        if isinstance(df1, pl.DataFrame):
+            return polars_to_pandas(df)
         return df
 
     # if axis == "v":
@@ -60,4 +70,6 @@ def concat(df1, df2, axis="h", **kwargs):
 
     df.columns = df1.columns.values
 
+    if isinstance(df1, pl.DataFrame):
+        return polars_to_pandas(df)
     return df.drop_duplicates()
